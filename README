@@ -1,0 +1,69 @@
+# 🚀 AI-Powered Dynamic Pricing Engine for Small E-Commerce
+
+An intelligent, full-stack dynamic pricing and inventory markdown engine built for small e-commerce businesses. The system automates competitor price scraping simulations, calculates AI-driven price adjustments based on inventory age and market trends, and features a modern real-time analytics dashboard.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Backend:** Python, FastAPI, SQLAlchemy, SQLite, Pydantic
+* **Frontend:** React, TypeScript, Tailwind CSS, Lucide Icons, Recharts (for dynamic analytics charts)
+* **Architecture:** RESTful API with CORS enabled for seamless client-server communication
+
+---
+
+## ✨ Key Features
+
+1. **Automated Competitor Benchmarking:** Simulates real-time market competitor scraping to track pricing gaps.
+2. **AI Markdown & Dynamic Pricing Logic:** Automatically adjusts product pricing using rules based on inventory aging (e.g., items older than 30 days trigger tactical markdowns).
+3. **Strategic AI Insights:** Generates tailored market trends, recommended actions, confidence scores, and projected revenue boosts for individual SKUs.
+4. **Live Interactive Dashboard:** Real-time metrics tracking total SKUs, aging stock alerts, and multi-variable price adaptation curves.
+5. **Bulk Repricing & Data Export:** Execute mass repricing rules with a single click and export complete inventory analytics reports in JSON format.
+
+---
+
+## ⚙️ Project Setup & Installation
+
+### 1. Clone the Repository & Setup Backend
+```bash
+# Navigate to project directory
+cd dynamic-pricing-engine
+
+# Activate virtual environment (if using venv)
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install backend dependencies
+pip install fastapi uvicorn sqlalchemy pydantic requests
+
+venv\Scripts\activate
+# Run FastAPI Server
+uvicorn main:app --reload
+
+Backend will run on http://127.0.0.1:8000
+
+2. Run the Frontend Dashboard
+Bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run Vite development server
+npm run dev
+Frontend dashboard will be accessible at http://localhost:5173
+
+📊 API Endpoints Overview
+GET / - Engine health check and welcome message.
+
+GET /products/ - Retrieve all active product SKUs from the database.
+
+POST /products/ - Register a new product into the inventory catalog.
+
+POST /calculate-price/{product_id} - Trigger AI & competitor-based dynamic price calculation for a specific SKU.
+
+POST /ai-insights/{product_id} - Fetch strategic AI advice and market trends.
+
+POST /bulk-reprice/ - Perform bulk automated markdowns on aging inventory.
+
+GET /analytics/trends/ - Stream live database metrics for UI visualizer charts.  
