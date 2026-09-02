@@ -27,8 +27,7 @@ app.add_middleware(
 class ProductCreate(BaseModel):
     name: str
     base_price: float
-    inventory_age_days: int
-
+   inventory_age_days: int
 # Database session dependency
 def get_db():
     db = SessionLocal()
