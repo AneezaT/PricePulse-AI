@@ -33,7 +33,7 @@ interface Product {
   inventory_age_days: number;
   suggested_price: number | null;
 }
-
+const API_BASE_URL = "https://pricepulse-ai-3b32.onrender.com";
 export default function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ export default function App() {
 
   const fetchAnalyticsTrends = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/analytics/trends/");
+      const res = await axios.get("${API_BASE_URL}/analytics/trends/");
       if (res.data && res.data.length > 0) {
         setChartData(res.data);
       } else {
@@ -80,7 +80,7 @@ export default function App() {
   const handleBulkReprice = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://127.0.0.1:8000/bulk-reprice/?threshold_days=30");
+      const res = await axios.post("${API_BASE_URL}/bulk-reprice/?threshold_days=30");
       showToast(res?.data?.message || "Bulk reprice executed successfully");
       fetchProducts();
       fetchAnalyticsTrends();
@@ -101,7 +101,7 @@ export default function App() {
 
   const fetchAiInsights = async (productId: number) => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/ai-insights/${productId}`);
+      const response = await axios.post(`${API_BASE_URL}/ai-insights/${productId}`);
       setAiInsight(response.data);
       showToast("AI Strategic Insights generated successfully!");
     } catch (error) {
@@ -116,7 +116,7 @@ export default function App() {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://127.0.0.1:8000/products/", {
+      const res = await axios.post("${API_BASE_URL}/products/", {
         name: name,
         base_price: parseFloat(basePrice),
         inventory_age_days: parseInt(ageDays, 10),
@@ -142,7 +142,7 @@ export default function App() {
   const calculateDynamicPrice = async (id: number) => {
     try {
       setLoading(true);
-      const res = await axios.post(`http://127.0.0.1:8000/calculate-price/${id}`);
+      const res = await axios.post(`${API_BASE_URL}/calculate-price/${id}`);
       setProducts((prev) =>
         (Array.isArray(prev) ? prev : []).map((item) =>
           item.id === id
